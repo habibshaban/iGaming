@@ -1,0 +1,76 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.input {
+  @include input-base;
+  width: 100%;
+  padding-top: 28px;
+  padding-bottom: 8px;
+  color: $color-text-primary;
+
+  &:focus {
+    border-color: $color-text-primary;
+    // border-color: $color-primary;
+  }
+
+  &::placeholder {
+    opacity: 0;
+  }
+
+  &--password {
+    padding-right: 48px;
+  }
+}
+
+.input-label {
+  position: absolute;
+  left: $input-padding-x;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+  color: $color-text-secondary;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.input:focus + .input-label,
+.input:not(:placeholder-shown) + .input-label {
+  top: $spacing-xs;
+  transform: translateY(0);
+  font-size: $font-size-sm;
+}
+
+.input:not(:placeholder-shown) {
+  padding-top: 28px;
+}
+
+.input-eye-icon {
+  position: absolute;
+  right: $input-padding-x;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: $color-text-secondary;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-text-primary;
+  }
+}
