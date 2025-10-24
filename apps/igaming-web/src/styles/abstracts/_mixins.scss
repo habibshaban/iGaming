@@ -1,0 +1,25 @@
+@use "./variables" as *;
+
+@mixin input-base {
+  height: $input-height;
+  padding: 0 $input-padding-x;
+  border: $input-border-width solid $color-border;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+@mixin button-base {
+  height: $button-height;
+  max-width: $button-width;
+  padding: $button-padding;
+  border-radius: $border-radius-sm;
+  border: none;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
