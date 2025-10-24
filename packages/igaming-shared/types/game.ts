@@ -2,8 +2,8 @@ export interface Game {
   id: number;
   name: string;
   provider: number; // provider id
-  cover: string;
-  coverLarge: string;
+  cover?: string | undefined;
+  coverLarge?: string | undefined;
   date: string;
 }
 
