@@ -1,5 +1,6 @@
 import express from "express";
 import { sessionMw } from "./config/session.js";
+import { errorHandler } from "./middlewares/errors.js";
 export async function createApp(): Promise<express.Express> {
   const app = express();
 
@@ -14,6 +15,8 @@ export async function createApp(): Promise<express.Express> {
   app.use((_req, res) => {
     res.status(404).json({ error: "not_found" });
   });
+
+  app.use(errorHandler);
 
   return app;
 }
