@@ -10,6 +10,11 @@
   }
 }
 
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
 .input {
   @include input-base;
   width: 100%;
@@ -28,6 +33,14 @@
 
   &--password {
     padding-right: 48px;
+  }
+
+  &--error {
+    border-color: #dc2626;
+
+    &:focus {
+      border-color: #dc2626;
+    }
   }
 }
 
@@ -72,5 +85,25 @@
 
   &:hover {
     color: $color-text-primary;
+  }
+}
+
+.input-error {
+  display: block;
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-left: $input-padding-x;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
