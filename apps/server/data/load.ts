@@ -32,9 +32,13 @@ export async function loadData(
   if (cache) return cache;
 
   const raw = await fs.readFile(filePath, "utf8");
-  const json = tryParseJson(raw);
+  const jsonResult = tryParseJson(raw);
 
-  const parsed = DataSchema.safeParse(json);
+  if (!jsonResult.ok) {
+    throw new Error(`Failed to parse JSON: ${jsonResult.error}`);
+  }
+
+  const parsed = DataSchema.safeParse(jsonResult.value);
   if (!parsed.success) {
     throw new Error("data.json failed schema validation");
   }
