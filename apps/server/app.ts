@@ -22,7 +22,7 @@ export async function createApp(): Promise<express.Express> {
   app.use(express.urlencoded({ extended: true, limit: "10mb" }));
   app.use(sessionMw);
 
-  registerRoutes(app);
+  registerRoutes(app, repo);
 
   app.use(errorHandler);
 
