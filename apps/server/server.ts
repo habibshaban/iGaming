@@ -1,9 +1,10 @@
+import { env } from "./config/env.js";
 import { createApp } from "./app.js";
 
 createApp()
   .then((app) => {
-    app.listen(3000, () => {
-      console.log(`Server listening on http://localhost:3000`);
+    app.listen(env.PORT, () => {
+      console.log(`Server listening on http://localhost:${env.PORT}`);
     });
   })
   .catch((err) => {
