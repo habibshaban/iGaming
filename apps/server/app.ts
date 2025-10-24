@@ -3,9 +3,13 @@ import { sessionMw } from "./config/session.js";
 import { errorHandler } from "./middlewares/errors.js";
 import { registerRoutes } from "./routes/index.js";
 import cors from "cors";
+import { loadData } from "./data/load.js";
+import { buildRepo } from "./data/repo.js";
 
 export async function createApp(): Promise<express.Express> {
   const app = express();
+  const dataStore = await loadData();
+  const repo = buildRepo(dataStore.data);
 
   app.use(
     cors({
