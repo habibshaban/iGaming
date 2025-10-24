@@ -1,0 +1,45 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.btn {
+  @include button-base;
+  width: 100%;
+  background-color: $color-primary;
+  color: $color-text-primary;
+  box-shadow: $shadow-default;
+  outline: none;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0066ff;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &--loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.btn-logout {
+  background-color: transparent;
+  border: none;
+  color: $color-danger;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  cursor: pointer;
+  padding: 12px 24px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
