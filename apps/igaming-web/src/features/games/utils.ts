@@ -1,12 +1,6 @@
 import type { Game, Group } from "@/lib/interfaces";
 import type { SortOption } from "@/constants/filters";
-
-interface GameFilters {
-  searchQuery: string;
-  selectedProviders: Set<number>;
-  selectedGroups: Set<number>;
-  sortOption: SortOption;
-}
+import type { GameFilters } from "./types";
 
 const normalizeString = (str: string): string => {
   return str.toLowerCase().trim();
