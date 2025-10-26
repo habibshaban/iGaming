@@ -9,8 +9,11 @@ type GameControllerType = {
 
 export function GameController(gameService: GameService): GameControllerType {
   const getGames: RequestHandler = (_req, res) => {
-    const games = gameService.getGames();
-    res.json({ games });
+    const { games, groupedGameIds } = gameService.getGames();
+    res.json({
+      games,
+      groupedGameIds: Array.from(groupedGameIds),
+    });
   };
 
   const getProviders: RequestHandler = (_req, res) => {
