@@ -1,38 +1,45 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .header {
-  height: $spacing-xl; // 70px
+  height: $header-height;
   box-shadow: $shadow-default;
-  background-color: #fff;
+  background-color: $color-white;
 
   &__container {
-    max-width: 1440px;
+    max-width: $layout-max-width;
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    padding: 0 82px;
+    padding: $header-padding-mobile;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   &__logo {
-    width: $logo-size; // 70px
-    height: $logo-size; // 70px
+    width: $logo-size;
+    height: $logo-size;
     object-fit: contain;
   }
 
   &__user-section {
     display: flex;
     align-items: center;
-    gap: $spacing-md; // 20px
+    gap: $spacing-md;
   }
 
   &__username {
-    font-size: $font-size-base; // 16px
-    font-weight: $font-weight-regular; // 400
-    line-height: $line-height-base; // 120%
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-base;
     color: $color-text-primary;
+  }
+
+  @include responsive($breakpoint-xs) {
+    &__container {
+      padding: $header-padding-desktop;
+    }
   }
 }
 
@@ -41,25 +48,25 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  font-size: $font-size-base; // 16px
-  font-weight: $font-weight-regular; // 400
-  line-height: $line-height-base; // 120%
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
   color: $color-danger;
   display: flex;
   align-items: center;
-  gap: 8px;
-  transition: opacity 0.2s;
+  gap: $spacing-2xs;
+  transition: opacity $transition-fast;
 
   &__icon {
-    width: 16px;
-    height: 16px;
+    width: $icon-size-md;
+    height: $icon-size-md;
   }
 
   &:hover {
-    opacity: 0.8;
+    opacity: $opacity-hover;
   }
 
   &:active {
-    opacity: 0.6;
+    opacity: $opacity-disabled;
   }
 }

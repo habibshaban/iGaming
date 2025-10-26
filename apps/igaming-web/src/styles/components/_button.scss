@@ -10,23 +10,20 @@
   outline: none;
 
   &:hover:not(:disabled) {
-    opacity: 0.9;
+    opacity: $opacity-active;
   }
 
   &:focus-visible {
-    outline: 2px solid #0066ff;
-    outline-offset: 2px;
+    @include focus-outline($color-focus);
   }
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: $opacity-disabled;
   }
 
   &--loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
   }
 }
 
@@ -37,9 +34,9 @@
   font-size: $font-size-base;
   font-weight: $font-weight-regular;
   cursor: pointer;
-  padding: 12px 24px;
+  padding: $button-padding-sm;
 
   &:hover {
-    opacity: 0.8;
+    opacity: $opacity-hover;
   }
 }

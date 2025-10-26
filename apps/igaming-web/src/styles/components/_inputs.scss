@@ -18,13 +18,12 @@
 .input {
   @include input-base;
   width: 100%;
-  padding-top: 28px;
-  padding-bottom: 8px;
+  padding-top: $input-padding-top;
+  padding-bottom: $input-padding-bottom;
   color: $color-text-primary;
 
   &:focus {
     border-color: $color-text-primary;
-    // border-color: $color-primary;
   }
 
   &::placeholder {
@@ -36,10 +35,10 @@
   }
 
   &--error {
-    border-color: #dc2626;
+    border-color: $color-error;
 
     &:focus {
-      border-color: #dc2626;
+      border-color: $color-error;
     }
   }
 }
@@ -54,7 +53,7 @@
   line-height: $line-height-base;
   color: $color-text-secondary;
   pointer-events: none;
-  transition: all 0.2s ease;
+  transition: all $transition-fast;
 }
 
 .input:focus + .input-label,
@@ -65,7 +64,7 @@
 }
 
 .input:not(:placeholder-shown) {
-  padding-top: 28px;
+  padding-top: $input-padding-top;
 }
 
 .input-eye-icon {
@@ -77,11 +76,11 @@
   border: none;
   color: $color-text-secondary;
   cursor: pointer;
-  padding: 4px;
+  padding: $spacing-xxs;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s ease;
+  transition: color $transition-fast;
 
   &:hover {
     color: $color-text-primary;
@@ -90,20 +89,9 @@
 
 .input-error {
   display: block;
-  color: #dc2626;
-  font-size: 12px;
-  margin-top: 4px;
+  color: $color-error;
+  font-size: $font-size-sm;
+  margin-top: $spacing-xxs;
   margin-left: $input-padding-x;
-  animation: slideDown 0.2s ease-out;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation: slideDown $transition-fast ease-out;
 }

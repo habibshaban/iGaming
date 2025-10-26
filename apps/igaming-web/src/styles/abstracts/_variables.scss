@@ -3,28 +3,116 @@ $color-text-secondary: #808080;
 $color-primary: #fdbc11;
 $color-danger: #ec4466;
 $color-border: #f2f2f2;
+$color-blue: #3f53be;
+$color-white: #fff;
+$color-background: #fff;
+
+$color-error: #dc2626;
+$color-error-light: rgba(239, 68, 68, 0.1);
+$color-error-border: rgba(239, 68, 68, 0.3);
+
+$color-success: #16a34a;
+$color-success-light: rgba(34, 197, 94, 0.1);
+$color-success-border: rgba(34, 197, 94, 0.3);
+
+$color-warning: #d97706;
+$color-warning-light: rgba(251, 191, 36, 0.1);
+$color-warning-border: rgba(251, 191, 36, 0.3);
+
+$color-info: #2563eb;
+$color-info-light: rgba(59, 130, 246, 0.1);
+$color-info-border: rgba(59, 130, 246, 0.3);
+
+$color-gray-light: #f5f5f5;
+$color-gray-medium: #e0e0e0;
+$color-focus: #0066ff;
+$color-primary-light: rgba(253, 188, 17, 0.1);
+$color-primary-medium: rgba(253, 188, 17, 0.3);
+$color-primary-dark: rgba(253, 188, 17, 0.4);
+$color-primary-darker: rgba(253, 188, 17, 0.6);
 
 $shadow-default: 0px -2px 18px 0px rgba(128, 128, 128, 0.1);
+$shadow-card: 0 20px 60px rgba(0, 0, 0, 0.3);
+$shadow-hover: 0 2px 8px rgba(253, 188, 17, 0.4);
+$shadow-active: 0 2px 8px rgba(253, 188, 17, 0.6);
 
 $spacing-xs: 12px;
 $spacing-sm: 16px;
 $spacing-md: 20px;
 $spacing-lg: 40px;
 $spacing-xl: 70px;
+$spacing-xxs: 4px;
+$spacing-2xs: 8px;
+$spacing-2xl: 32px;
 
 $border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 1rem;
+$border-radius-full: 50%;
+
+$border-width-sm: 1px;
+$border-width-md: 2px;
 
 $input-height: 64px;
 $input-padding-x: 16px;
+$input-padding-top: 28px;
+$input-padding-bottom: 8px;
 $input-border-width: 1px;
+$input-icon-size: 20px;
 
 $button-height: 64px;
 $button-width: 412px;
 $button-padding: 24px;
+$button-padding-sm: 12px 24px;
+$button-padding-md: 11.5px 38.5px;
+
+$logo-size: 70px;
+$filter-section-mobile-height: 179px;
+$icon-size-sm: 14px;
+$icon-size-md: 16px;
+$icon-size-lg: 24px;
+$spinner-size-sm: 14px;
+$spinner-size-lg: 64px;
 
 $font-size-base: 16px;
 $font-size-sm: 12px;
-$font-weight-regular: 400;
-$line-height-base: 120%;
+$font-size-md: 14px;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.5rem;
+$font-size-2xl: 2rem;
+$font-size-3xl: 6rem;
+$font-size-4xl: 8rem;
 
-$logo-size: 70px;
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-base: 120%;
+$line-height-relaxed: 1.6;
+
+$layout-max-width: 1440px;
+$layout-padding-mobile: 12px 24px;
+$layout-padding-desktop: 24px 82px;
+$header-height: $spacing-xl;
+$header-padding-mobile: 0 24px;
+$header-padding-desktop: 0 82px;
+
+$breakpoint-xs: 429px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1440px;
+
+$z-index-base: 1;
+$z-index-dropdown: 10;
+$z-index-sticky: 100;
+$z-index-fixed: 1000;
+$z-index-modal: 9999;
+
+$transition-fast: 0.2s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+$opacity-disabled: 0.6;
+$opacity-hover: 0.8;
+$opacity-active: 0.9;
+$opacity-muted: 0.7;

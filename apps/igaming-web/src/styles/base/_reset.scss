@@ -1,3 +1,5 @@
+@use "../abstracts/variables" as *;
+
 *,
 *::before,
 *::after {
@@ -7,7 +9,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: $font-size-base;
 }
 
 body {
@@ -17,10 +19,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-button {
+button,
+input {
   font-family: inherit;
 }
 
-input {
-  font-family: inherit;
+*:focus-visible {
+  outline: $border-width-md solid $color-primary;
+  outline-offset: $border-width-md;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: $border-width-md solid $color-primary;
+  outline-offset: $border-width-md;
 }

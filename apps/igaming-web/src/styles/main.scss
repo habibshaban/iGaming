@@ -4,6 +4,12 @@
 @use "./components/button";
 @use "./components/inputs";
 @use "./components/spinner";
+@use "./components/loading-fallback";
+@use "./components/search-input";
+@use "./components/game-filter";
+@use "./components/column-selector";
 @use "./layout/layout";
 @use "./layout/header";
 @use "./pages/login";
+@use "./pages/home";
+@use "./pages/error";
