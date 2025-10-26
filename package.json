@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "dotenv -- turbo run dev --parallel",
+    "dev": "pnpm --filter igaming-shared build && dotenv -- turbo run dev --parallel",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
