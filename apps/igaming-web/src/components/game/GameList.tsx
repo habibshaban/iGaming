@@ -3,11 +3,20 @@ import type { Game } from "igaming-shared";
 
 interface GameListProps {
   games: Game[];
+  columnsCount?: number;
 }
 
-const GameList = memo(({ games }: GameListProps) => {
+const GameList = memo(({ games, columnsCount = 2 }: GameListProps) => {
   return (
-    <ul className="games-grid" role="list">
+    <ul
+      className="games-grid"
+      style={
+        {
+          "--columns-count": columnsCount,
+        } as React.CSSProperties
+      }
+      role="list"
+    >
       {games.map((game) => (
         <GameItem key={game.id} game={game} />
       ))}
