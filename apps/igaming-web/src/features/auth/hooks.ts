@@ -30,6 +30,7 @@ export function useLogout() {
   return useMutation({
     mutationFn: authApi.logout,
     onSuccess: async () => {
+      qc.setQueryData(AUTH_KEY, null);
       qc.removeQueries({ queryKey: AUTH_KEY });
     },
   });
