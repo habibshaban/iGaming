@@ -1,6 +1,5 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ZodError } from "igaming-shared";
 import { userSchema } from "igaming-shared";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
@@ -9,7 +8,6 @@ import Spinner from "@/components/Spinner";
 import LoginImage from "@/assets/images/logo.png";
 import { useLogin, useAuth } from "@/features/auth";
 import { getErrorMessage, getValidationErrors } from "@/lib/utils/errors";
-
 interface ValidationErrors {
   username?: string;
   password?: string;
@@ -26,43 +24,43 @@ const LoginPage = () => {
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const [serverError, setServerError] = useState<string | null>(null);
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    setValidationErrors((prev) => {
-      if (prev[name as keyof ValidationErrors]) {
-        return {
-          ...prev,
-          [name]: undefined,
-        };
-      }
-      return prev;
-    });
-    setServerError((prev) => (prev ? null : prev));
+  const validate = useCallback((data: typeof formData) => {
+    const res = userSchema.safeParse(data);
+    if (res.success) return {};
+    return getValidationErrors<typeof formData>(res.error);
   }, []);
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+
+      setServerError(null);
+      setValidationErrors((prev) => {
+        if (!prev[name as keyof ValidationErrors]) return prev;
+        const candidate = { ...formData, [name]: value };
+        const nextErrors = validate(candidate);
+        return { ...prev, [name]: nextErrors[name as keyof ValidationErrors] };
+      });
+    },
+    [formData, validate]
+  );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setValidationErrors({});
     setServerError(null);
-    try {
-      userSchema.parse(formData);
-      login(formData, {
-        onSuccess: () => {
-          navigate("/");
-        },
-        onError: (error: unknown) => {
-          setServerError(getErrorMessage(error));
-        },
-      });
-    } catch (error) {
-      if (error instanceof ZodError) {
-        setValidationErrors(getValidationErrors<typeof formData>(error));
-      }
-    }
+
+    const errors = validate(formData);
+    setValidationErrors(errors);
+    if (Object.keys(errors).length) return;
+
+    login(formData, {
+      onSuccess: () => navigate("/"),
+      onError: (error: unknown) => setServerError(getErrorMessage(error)),
+    });
   };
 
   useEffect(() => {
@@ -81,7 +79,8 @@ const LoginPage = () => {
         <div className="login-logo">
           <img src={LoginImage} alt="FinnPlay Logo" width="70" height="70" />
         </div>
-        <form className="login-form" onSubmit={handleSubmit}>
+        <h1 className="sr-only">Login to FinnPlay</h1>
+        <form className="login-form" onSubmit={handleSubmit} aria-label="Login form">
           {serverError && (
             <Alert variant="error" onClose={() => setServerError(null)}>
               {serverError}
@@ -95,6 +94,7 @@ const LoginPage = () => {
               value={formData.username}
               onChange={handleChange}
               error={validationErrors.username}
+              autoComplete="username"
             />
             <Input
               type="password"
@@ -103,6 +103,7 @@ const LoginPage = () => {
               value={formData.password}
               onChange={handleChange}
               error={validationErrors.password}
+              autoComplete="current-password"
             />
           </div>
           <Button type="submit" loading={isPending}>

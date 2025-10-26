@@ -9,12 +9,14 @@ interface InputProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
+  autoComplete?: string;
 }
 
-const Input = ({ label, type, name, value, onChange, error }: InputProps) => {
+const Input = ({ label, type, name, value, onChange, error, autoComplete }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === "password";
   const inputType = isPassword && showPassword ? "text" : type;
+  const errorId = error ? `${name}-error` : undefined;
 
   return (
     <div className="input-wrapper">
@@ -27,6 +29,9 @@ const Input = ({ label, type, name, value, onChange, error }: InputProps) => {
           value={value}
           onChange={onChange}
           placeholder=" "
+          aria-invalid={error ? "true" : "false"}
+          aria-describedby={errorId}
+          autoComplete={autoComplete}
         />
         <label htmlFor={name} className="input-label">
           {label}
@@ -40,12 +45,13 @@ const Input = ({ label, type, name, value, onChange, error }: InputProps) => {
           >
             <img
               src={showPassword ? HidePasswordIcon : ShowPasswordIcon}
-              alt="Toggle password visibility"
+              alt=""
+              aria-hidden="true"
             />
           </button>
         )}
       </div>
-      {error && <span className="input-error">{error}</span>}
+      {error && <span className="input-error" id={errorId} role="alert">{error}</span>}
     </div>
   );
 };

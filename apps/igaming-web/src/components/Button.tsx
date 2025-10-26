@@ -14,6 +14,7 @@ const Button = ({ children, loading = false, onClick, type = "button" }: ButtonP
       disabled={loading}
       onClick={onClick}
       type={type}
+      aria-busy={loading}
     >
       {loading ? <Spinner /> : children}
     </button>
