@@ -74,7 +74,6 @@ export const filterAndSortGames = (
   groupedGameIds: Set<number>
 ): Game[] => {
   if (!games) return [];
-  console.log("filterAndSortGames called");
   const filtered = filterGames(games, filters, groups, groupedGameIds);
   const sorted = sortGames(filtered, filters.sortOption);
   return sorted;
