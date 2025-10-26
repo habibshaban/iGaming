@@ -1,5 +1,6 @@
 import { memo } from "react";
 import type { Game } from "igaming-shared";
+import EmptyState from "./EmptyState";
 
 interface GameListProps {
   games: Game[];
@@ -7,6 +8,9 @@ interface GameListProps {
 }
 
 const GameList = memo(({ games, columnsCount = 2 }: GameListProps) => {
+  if (!games.length) {
+    return <EmptyState message="No games available." />;
+  }
   return (
     <ul
       className="games-grid"
