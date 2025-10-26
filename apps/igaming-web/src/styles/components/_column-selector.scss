@@ -1,0 +1,92 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.column-selector {
+  width: 100%;
+  padding: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+
+  @include responsive($breakpoint-xs) {
+    display: flex;
+  }
+
+  &__label {
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-base;
+    color: $color-text-secondary;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      right: 2px;
+      height: 15px;
+      background-color: $color-primary-medium;
+      z-index: $z-index-base - 1;
+    }
+  }
+
+  &__item-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  &__item {
+    width: $icon-size-lg;
+    height: $icon-size-lg;
+    border-radius: $border-radius-full;
+    background-color: $color-primary;
+    border: none;
+    cursor: pointer;
+    @include flex-center;
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-base;
+    color: $color-text-primary;
+    transition: transform $transition-fast, box-shadow $transition-fast;
+    position: relative;
+    z-index: $z-index-base + 1;
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: $shadow-hover;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &:focus-visible {
+      @include focus-outline($color-primary);
+    }
+
+    &--active {
+      box-shadow: $shadow-active;
+    }
+  }
+
+  &__line {
+    position: absolute;
+    left: 2px;
+    height: 15px;
+    background-color: $color-primary;
+    transition: width $transition-base;
+    z-index: $z-index-base;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

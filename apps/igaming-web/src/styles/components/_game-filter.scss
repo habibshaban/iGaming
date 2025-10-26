@@ -1,0 +1,162 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.game-filter {
+  padding: $spacing-2xl;
+  border: $border-width-sm solid $color-border;
+  border-radius: $border-radius-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xl;
+  align-items: center;
+  height: fit-content;
+  position: absolute;
+  z-index: $z-index-dropdown;
+  background: $color-white;
+  width: 100%;
+  transition: gap 300ms ease;
+
+  &[data-open="false"] {
+    gap: $spacing-sm;
+  }
+
+  &__filters {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2xl;
+    align-items: center;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 300ms ease, opacity 200ms linear;
+    will-change: max-height, opacity;
+
+    &[data-open="true"] {
+      max-height: 2000px;
+      opacity: 1;
+    }
+
+    @include responsive($breakpoint-sm) {
+      max-height: none;
+      opacity: 1;
+    }
+  }
+
+  &__section {
+    width: 100%;
+    @include responsive($breakpoint-sm) {
+      padding: $filter-section-padding;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-base;
+    color: $color-text-secondary;
+    margin: 0 0 10px 0;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px $spacing-lg;
+    padding: 2px;
+  }
+
+  &__item {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-base;
+    color: $color-text-primary;
+    border-radius: $border-radius-sm;
+    transition: background-color $transition-fast;
+
+    &:hover {
+      background-color: $color-primary-light;
+    }
+
+    &--active {
+      background-color: $color-primary;
+    }
+  }
+
+  &__footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__count {
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-base;
+    color: $color-text-secondary;
+  }
+
+  &__reset {
+    background: none;
+    border: none;
+    padding: $button-padding-md;
+    cursor: pointer;
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-base;
+    color: $color-text-secondary;
+    transition: opacity $transition-fast;
+    box-shadow: $shadow-default;
+
+    &:hover {
+      opacity: $opacity-hover;
+      color: $color-text-primary;
+    }
+
+    &:active {
+      opacity: $opacity-disabled;
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2xs;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-base;
+    color: $color-blue;
+    width: fit-content;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: $opacity-hover;
+    }
+
+    &:active {
+      opacity: $opacity-disabled;
+    }
+
+    @include responsive($breakpoint-sm) {
+      display: none;
+    }
+  }
+
+  &__button-icon {
+    width: $icon-size-sm;
+    height: $icon-size-sm;
+  }
+
+  @include responsive($breakpoint-sm) {
+    width: auto;
+    min-width: 0;
+  }
+}

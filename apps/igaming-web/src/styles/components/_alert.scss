@@ -1,0 +1,58 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $border-radius-md;
+  width: 100%;
+  font-size: $font-size-md;
+  margin-bottom: $spacing-sm;
+  animation: slideDown $transition-base ease-out;
+
+  &--error {
+    background-color: $color-error-light;
+    border: $border-width-sm solid $color-error-border;
+    color: $color-error;
+  }
+
+  &--success {
+    background-color: $color-success-light;
+    border: $border-width-sm solid $color-success-border;
+    color: $color-success;
+  }
+
+  &--warning {
+    background-color: $color-warning-light;
+    border: $border-width-sm solid $color-warning-border;
+    color: $color-warning;
+  }
+
+  &--info {
+    background-color: $color-info-light;
+    border: $border-width-sm solid $color-info-border;
+    color: $color-info;
+  }
+
+  &-content {
+    flex: 1;
+  }
+
+  &-close {
+    background: none;
+    border: none;
+    font-size: $icon-size-lg;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0 0 $spacing-xs;
+    color: currentColor;
+    opacity: $opacity-muted;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

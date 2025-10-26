@@ -1,0 +1,97 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  @include input-base;
+  width: 100%;
+  padding-top: $input-padding-top;
+  padding-bottom: $input-padding-bottom;
+  color: $color-text-primary;
+
+  &:focus {
+    border-color: $color-text-primary;
+  }
+
+  &::placeholder {
+    opacity: 0;
+  }
+
+  &--password {
+    padding-right: 48px;
+  }
+
+  &--error {
+    border-color: $color-error;
+
+    &:focus {
+      border-color: $color-error;
+    }
+  }
+}
+
+.input-label {
+  position: absolute;
+  left: $input-padding-x;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+  color: $color-text-secondary;
+  pointer-events: none;
+  transition: all $transition-fast;
+}
+
+.input:focus + .input-label,
+.input:not(:placeholder-shown) + .input-label {
+  top: $spacing-xs;
+  transform: translateY(0);
+  font-size: $font-size-sm;
+}
+
+.input:not(:placeholder-shown) {
+  padding-top: $input-padding-top;
+}
+
+.input-eye-icon {
+  position: absolute;
+  right: $input-padding-x;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: $color-text-secondary;
+  cursor: pointer;
+  padding: $spacing-xxs;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-text-primary;
+  }
+}
+
+.input-error {
+  display: block;
+  color: $color-error;
+  font-size: $font-size-sm;
+  margin-top: $spacing-xxs;
+  margin-left: $input-padding-x;
+  animation: slideDown $transition-fast ease-out;
+}
