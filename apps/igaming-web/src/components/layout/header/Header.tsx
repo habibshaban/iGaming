@@ -6,13 +6,15 @@ const Header = () => {
   const { user } = useAuth();
 
   return (
-    <header className="header">
+    <header className="header" role="banner">
       <div className="header__container">
-        <img src={FinnPlayLogo} alt="FinnPlay Logo" className="header__logo" />
-        <div className="header__user-section">
-          <span className="header__username">{user?.username}</span>
+        <img src={FinnPlayLogo} alt="FinnPlay" className="header__logo" />
+        <nav className="header__user-section" aria-label="User menu">
+          <span className="header__username" aria-label={`Logged in as ${user?.username}`}>
+            {user?.username}
+          </span>
           <LogoutButton />
-        </div>
+        </nav>
       </div>
     </header>
   );

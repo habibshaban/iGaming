@@ -16,8 +16,8 @@ const LogoutButton = () => {
   };
 
   return (
-    <button className="logout-button" onClick={handleLogout}>
-      <img src={RoundUserIcon} alt="logout" className="logout-button__icon" />
+    <button className="logout-button" onClick={handleLogout} aria-label="Logout">
+      <img src={RoundUserIcon} alt="" aria-hidden="true" className="logout-button__icon" />
       Logout
     </button>
   );
