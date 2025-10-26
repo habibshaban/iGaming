@@ -1,0 +1,40 @@
+@use "../abstracts/variables" as *;
+
+.search-input {
+  position: relative;
+  width: 100%;
+
+  &__field {
+    width: 100%;
+    height: auto;
+    padding: 22.5px 48px 22.5px $spacing-sm;
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-base;
+    border: $border-width-sm solid $color-border;
+    border-radius: $border-radius-md;
+    outline: none;
+    transition: border-color $transition-fast;
+
+    &::placeholder {
+      color: $color-text-secondary;
+      font-size: $font-size-base;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-base;
+    }
+
+    &:focus {
+      border-color: $color-text-secondary;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: $spacing-sm;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $input-icon-size;
+    height: $input-icon-size;
+    pointer-events: none;
+  }
+}
