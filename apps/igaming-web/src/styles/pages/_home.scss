@@ -1,0 +1,102 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.home-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xl;
+  position: relative;
+
+  @include responsive($breakpoint-xs) {
+    max-width: $layout-max-width;
+    margin: 0 auto;
+  }
+
+  @include responsive($breakpoint-sm) {
+    flex-direction: row-reverse;
+    gap: $spacing-md;
+  }
+}
+
+.game-filter-section {
+  position: relative;
+  height: $filter-section-mobile-height;
+
+  @include responsive($breakpoint-sm) {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    position: static;
+  }
+}
+
+.home-loading {
+  @include flex-center;
+  min-height: 50vh;
+  padding: $layout-padding-mobile;
+
+  @include responsive($breakpoint-xs) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+  width: 100%;
+  will-change: contents;
+  contain: layout style paint;
+
+  @include responsive($breakpoint-xs) {
+    grid-template-columns: repeat(var(--columns-count, 2), 1fr);
+    gap: $spacing-md;
+  }
+}
+
+.game-list-section {
+  @include responsive($breakpoint-sm) {
+    flex: 2;
+    min-width: 0;
+  }
+}
+
+.game-item {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: $border-radius-md;
+  background-color: $color-gray-light;
+  contain: layout style paint;
+  content-visibility: auto;
+}
+
+.game-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: $border-radius-md;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.game-placeholder {
+  @include flex-center;
+  background: linear-gradient(135deg, $color-gray-light 0%, $color-gray-medium 100%);
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+  text-align: center;
+  padding: $spacing-2xs;
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
